@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 
+	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/joho/godotenv/autoload"
 )
 
@@ -22,9 +23,12 @@ func initDB() {
 	passwd := os.Getenv("DB_PW")
 	host := os.Getenv("DB_HOST")
 	dbname := os.Getenv("DB_NAME")
+	connection := fmt.Sprintf("%s:%s@%s/%s", user, passwd, host, dbname)
+
+	fmt.Println(connection)
 
 	var err error
-	db, err = sql.Open("mysql", fmt.Sprintf("%s:%s@%s/%s", user, passwd, host, dbname))
+	db, err = sql.Open("mysql", connection)
 	if err != nil {
 		log.Fatal(err)
 	}
