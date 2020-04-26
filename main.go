@@ -14,8 +14,10 @@ var db *sql.DB
 
 func main() {
 	initDB()
+	initServer()
 }
 
+// initDB create connection to csstats database
 func initDB() {
 	fmt.Println("Initializing database")
 
@@ -24,8 +26,6 @@ func initDB() {
 	host := os.Getenv("DB_HOST")
 	dbname := os.Getenv("DB_NAME")
 	connection := fmt.Sprintf("%s:%s@%s/%s", user, passwd, host, dbname)
-
-	fmt.Println(connection)
 
 	var err error
 	db, err = sql.Open("mysql", connection)
