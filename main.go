@@ -24,8 +24,9 @@ func initDB() {
 	user := os.Getenv("DB_USER")
 	passwd := os.Getenv("DB_PW")
 	host := os.Getenv("DB_HOST")
+	port := os.Getenv("DB_PORT")
 	dbname := os.Getenv("DB_NAME")
-	connection := fmt.Sprintf("%s:%s@%s/%s", user, passwd, host, dbname)
+	connection := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", user, passwd, host, port, dbname)
 
 	var err error
 	db, err = sql.Open("mysql", connection)
