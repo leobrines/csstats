@@ -26,3 +26,22 @@ func GetTopPlayers() ([]*Player, error) {
 
 	return players, nil
 }
+
+func GetTopPlayersWithProfiles() ([]*Player, error) {
+	players, err := GetTopPlayers()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, p := range players {
+		data, err := GetSteamUserData(p.SteamID)
+		if err != nil {
+			return nil, err
+		}
+
+		p.SteamProfile = data.Profile
+		p.SteamAvatar = data.Avatar
+	}
+
+	return players, nil
+}

@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
 
 func initServer() {
@@ -23,7 +23,7 @@ func initServer() {
 }
 
 func TopHandler(c *gin.Context) {
-	players, err := GetTopPlayers()
+	players, err := GetTopPlayersWithProfiles()
 	if err != nil {
 		c.Error(err)
 		return
