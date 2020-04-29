@@ -1,12 +1,14 @@
 package main
 
+import "fmt"
+
 // GetTopPlayers will get stats of the top players
 func GetTopPlayers() ([]*Player, error) {
 	sql := "SELECT name, steamid, kills, deaths FROM csstats.csstats ORDER BY kills DESC LIMIT 10"
 
 	rows, err := db.Query(sql)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("could not get top players: %s", err)
 	}
 
 	defer rows.Close()
@@ -18,7 +20,7 @@ func GetTopPlayers() ([]*Player, error) {
 
 		err := rows.Scan(&p.Name, &p.SteamID, &p.Kills, &p.Deaths)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("could not scan top players rows: %s", err)
 		}
 
 		players = append(players, p)

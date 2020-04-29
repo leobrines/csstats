@@ -21,14 +21,16 @@ type SteamUserResponse struct {
 func GetSteamUserData(steamid string) (*SteamUserResponse, error) {
 	steamid64, err := gosteamconv.SteamStringToInt64(steamid)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("could not transform to steamid64 : %s", err)
 	}
 
 	u := fmt.Sprintf(steamUserEndpoint, os.Getenv("STEAM_API_KEY"), steamid64)
 
+	fmt.Println(u)
+
 	resp, err := client.R().Get(u)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("could not get response from steam: %s", err)
 	}
 
 	r := &struct {
@@ -40,7 +42,7 @@ func GetSteamUserData(steamid string) (*SteamUserResponse, error) {
 	body := resp.Body()
 
 	if err := json.Unmarshal(body, r); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("could not unmarshall steam response : %s", err)
 	}
 
 	return r.Response.Players[0], err
