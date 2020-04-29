@@ -5,6 +5,7 @@ It's just a API rest for getting top players from a CsstatsX DB
 ## How to setup server?
 
 You need to configure a .env file with this variables:
+* API_PORT - HTTP server port
 * DB_USER - Database user
 * DB_PW - Database password
 * DB_HOST - Database server host
