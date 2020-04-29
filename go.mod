@@ -1,5 +1,7 @@
 module github.com/leobrines/csstats
 
+go 1.14
+
 require (
 	github.com/MrWaggel/gosteamconv v0.0.0-20190214041723-97e1fbb6de26
 	github.com/gin-contrib/cors v1.3.1

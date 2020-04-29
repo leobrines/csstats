@@ -9,6 +9,7 @@ You need to configure a .env file with this variables:
 * DB_USER - Database user
 * DB_PW - Database password
 * DB_HOST - Database server host
+* DB_PORT - Database server port
 * DB_NAME - Database name
 * STEAM_APIKEY - Steam API Key for getting user data
 
