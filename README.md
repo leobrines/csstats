@@ -11,7 +11,7 @@ You need to configure a .env file with this variables:
 * DB_HOST - Database server host
 * DB_PORT - Database server port
 * DB_NAME - Database name
-* STEAM_APIKEY - Steam API Key for getting user data
+* STEAM_API_KEY - Steam API Key for getting user data
 
 ## Endpoints
 
